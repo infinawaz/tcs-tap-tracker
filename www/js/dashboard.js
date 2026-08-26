@@ -204,8 +204,7 @@ export function initDashboard({ user, onLogout }) {
         totalHours,
       });
 
-      if (res?.success) {
-        // Success path
+      if (res?.success === true || res?.status === 'success') {
         stopElapsedTimer();
         clearTapState();
         applyTappedOutUI();
@@ -277,8 +276,10 @@ export function initDashboard({ user, onLogout }) {
     try {
       const res = await apiGetHistory(user.id, user.pin);
 
-      if (res?.success) {
-        const records = Array.isArray(res.records) ? res.records : [];
+      if (res?.success === true || res?.status === 'success') {
+        const records = Array.isArray(res.records) ? res.records
+                      : Array.isArray(res.data)    ? res.data
+                      : [];
         renderHistory(records);
       } else {
         throw new Error(res?.message || 'Failed to fetch history.');

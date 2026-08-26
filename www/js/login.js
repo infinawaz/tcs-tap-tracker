@@ -57,10 +57,11 @@ export function initLogin({ onSuccess }) {
     try {
       const res = await apiLogin(associateId, pin);
 
-      if (res?.success) {
+      // GAS backend returns { status:"success" } OR { success:true } — handle both
+      if (res?.success === true || res?.status === 'success') {
         // Normalise user profile — backend may return varying structures
         const user = {
-          id:   res.user?.id   ?? associateId,
+          id:   String(res.user?.id   ?? associateId),
           name: res.user?.name ?? res.name ?? associateId,
           role: res.user?.role ?? res.role ?? 'Associate',
           pin,
