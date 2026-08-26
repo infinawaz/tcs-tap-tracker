@@ -24,13 +24,23 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      # ── 3. Android SDK (use runner's pre-installed SDK) ───────────
-      - name: Configure Android SDK
+      # ── 3. Android SDK – accept licences by writing them directly ──
+      # Gradle resolves SDK via local.properties, not $ANDROID_SDK_ROOT,
+      # so we must accept licences in the actual SDK directory AND
+      # write local.properties after cap add runs (done post cap-add below).
+      - name: Accept Android SDK licences
         run: |
-          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
-            "platforms;android-34" \
-            "build-tools;34.0.0"
+          SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+          # Accept all licences via sdkmanager
+          yes | $SDKMANAGER --licenses || true
+          # Also write licence files directly so Gradle never complains
+          mkdir -p "$ANDROID_SDK_ROOT/licenses"
+          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" >  "$ANDROID_SDK_ROOT/licenses/android-sdk-license"
+          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_SDK_ROOT/licenses/android-sdk-license"
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_SDK_ROOT/licenses/android-sdk-license"
+          echo "84831b9409646a918e30573bab4c9c91346d8abd" >  "$ANDROID_SDK_ROOT/licenses/android-sdk-preview-license"
+          # Install required packages
+          $SDKMANAGER "platforms;android-34" "build-tools;34.0.0" || true
 
       # ── 4. Node.js & npm ──────────────────────────────────────────
       - name: Set up Node.js 24
@@ -46,6 +56,9 @@ jobs:
       # android/ is gitignored; cap add generates it fresh each run
       - name: Capacitor – add Android platform
         run: npx cap add android
+
+      - name: Write local.properties (point Gradle to correct SDK)
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
 
       - name: Capacitor – sync web assets to Android
         run: npx cap sync android
