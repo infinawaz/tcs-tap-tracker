@@ -1,0 +1,12 @@
+node_modules/
+android/
+ios/
+.gradle/
+*.jks
+*.keystore
+*.apk
+*.aab
+.DS_Store
+dist/
+.env
+.env.*

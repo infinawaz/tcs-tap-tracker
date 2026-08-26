@@ -1,0 +1,37 @@
+{
+  "appId":   "com.tcs.taptracker",
+  "appName": "TCS Tap Tracker",
+  "webDir":  "www",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "backgroundColor": "#0f172a",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "Dark",
+      "backgroundColor": "#0f172a"
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "dark"
+    }
+  },
+  "android": {
+    "buildOptions": {
+      "keystorePath":      "release-key.jks",
+      "keystoreAlias":     "tap-tracker",
+      "releaseType":       "APK",
+      "signingType":       "apksigner"
+    },
+    "allowMixedContent": false,
+    "loggingBehavior":   "debug",
+    "webContentsDebuggingEnabled": true
+  }
+}
