@@ -17,66 +17,64 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ── 2. Java 17 (Zulu – pre-cached on ubuntu-22.04 runners) ───
+      # ── 2. Java 17 ────────────────────────────────────────────────
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'zulu'
-          cache: 'gradle'
 
       # ── 3. Android SDK (use runner's pre-installed SDK) ───────────
       - name: Configure Android SDK
         run: |
-          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-          echo "ANDROID_HOME=$ANDROID_SDK_ROOT"     >> $GITHUB_ENV
           yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses || true
           $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
             "platforms;android-34" \
             "build-tools;34.0.0"
 
-      # ── 4. Node.js & npm dependencies ────────────────────────────
-      - name: Set up Node.js 20
+      # ── 4. Node.js & npm ──────────────────────────────────────────
+      - name: Set up Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install npm dependencies
         run: npm ci
 
-      # ── 5. Capacitor – add & sync Android ────────────────────────
+      # ── 5. Capacitor – add & sync Android ─────────────────────────
+      # android/ is gitignored; cap add generates it fresh each run
       - name: Capacitor – add Android platform
-        run: |
-          if [ ! -d "android" ]; then
-            npx cap add android
-          fi
+        run: npx cap add android
 
       - name: Capacitor – sync web assets to Android
         run: npx cap sync android
 
-      # ── 6. Gradle permissions & cache ────────────────────────────
+      # ── 6. Gradle permissions ─────────────────────────────────────
       - name: Make gradlew executable
         run: chmod +x android/gradlew
 
+      # ── 7. Cache Gradle (key uses commit SHA – gradle files exist now) ──
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          # Use SHA as key because android/ is generated mid-job
+          # (hashFiles on *.gradle* would be evaluated before cap add runs)
+          key: ${{ runner.os }}-gradle-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # ── 7. Build debug APK ───────────────────────────────────────
+      # ── 8. Build debug APK ────────────────────────────────────────
       - name: Build Debug APK
         run: cd android && ./gradlew assembleDebug --stacktrace --no-daemon
         env:
           ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
           ANDROID_HOME:     ${{ env.ANDROID_SDK_ROOT }}
 
-      # ── 8. Upload APK artifact ───────────────────────────────────
+      # ── 9. Upload APK artifact ────────────────────────────────────
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -85,7 +83,7 @@ jobs:
           retention-days: 30
           if-no-files-found: error
 
-      # ── 9. Comment APK link on PR ────────────────────────────────
+      # ── 10. Comment APK link on PR ────────────────────────────────
       - name: Comment APK link on PR
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
@@ -95,5 +93,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `✅ **Debug APK built successfully!**\n\nDownload from the [Actions run artifacts](${context.payload.repository.html_url}/actions/runs/${context.runId}).`
+              body: `✅ **Debug APK built!**\n\nDownload from [Actions artifacts](${context.payload.repository.html_url}/actions/runs/${context.runId}).`
             })
