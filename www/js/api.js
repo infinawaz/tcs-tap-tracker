@@ -65,6 +65,15 @@ export async function apiLogAttendance({ associateId, pin, date, tapIn, tapOut, 
 }
 
 /**
+ * Register – creates a new associate account.
+ * @param {object} params
+ * @returns {Promise<{success: boolean, message?: string}>}
+ */
+export async function apiRegister({ associateId, name, pin, role }) {
+  return post({ action: 'register', associateId, name, pin, role });
+}
+
+/**
  * Get personal history – fetches past attendance records.
  * @param {string} associateId
  * @param {string} pin
