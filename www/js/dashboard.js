@@ -239,12 +239,14 @@ export function initDashboard({ user, onLogout }) {
   function openSheet() {
     bottomSheet.classList.add('open');
     sheetBackdrop.classList.add('visible');
+    sheetFab.classList.add('hidden-fab');
     loadHistory();
   }
 
   function closeSheet() {
     bottomSheet.classList.remove('open');
     sheetBackdrop.classList.remove('visible');
+    sheetFab.classList.remove('hidden-fab');
   }
 
   sheetFab.addEventListener('click', openSheet);
