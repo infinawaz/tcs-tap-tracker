@@ -202,9 +202,14 @@ export function initHistory({ user }) {
 
   function formatDayLabel(dateStr) {
     try {
-      const d = new Date(dateStr + 'T00:00:00');
+      if (!dateStr || dateStr === 'Unknown') return String(dateStr || 'Unknown');
+      const s = String(dateStr).trim();
+      const d = /^\d{4}-\d{2}-\d{2}$/.test(s)
+        ? new Date(s + 'T00:00:00')
+        : new Date(s);
+      if (isNaN(d.getTime())) return s;
       return d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
-    } catch { return dateStr; }
+    } catch { return String(dateStr ?? 'Unknown'); }
   }
 
   return { onTabActivate };
