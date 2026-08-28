@@ -17,14 +17,14 @@
   <div id="screen-splash" class="screen active">
     <div class="splash-content">
       <div class="splash-logo">
-        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="36" r="36" fill="url(#splashGrad)"/>
-          <path d="M24 36 L33 45 L48 27" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <defs>
-            <linearGradient id="splashGrad" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#3b82f6"/><stop offset="1" stop-color="#1d4ed8"/>
-            </linearGradient>
-          </defs>
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 10a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2"/>
+          <path d="M10 5.172C10.726 5.06 11.463 5 12.2 5c3.84 0 7 3.134 7 7 0 1.41-.4 2.73-1.1 3.844"/>
+          <path d="M7.192 7.028A7 7 0 0 0 5.2 12c0 1.273.327 2.476.9 3.52"/>
+          <path d="M12 19c-2.21 0-4.21-.897-5.655-2.346"/>
+          <path d="M12 12v3"/>
+          <path d="M14.5 12a2.5 2.5 0 0 0-5 0v1"/>
+          <path d="M18 12c0 3.314-2.686 6-6 6"/>
         </svg>
       </div>
       <h1 class="splash-title">TCS Tap Tracker</h1>
@@ -43,14 +43,13 @@
       <!-- Header -->
       <div class="login-header">
         <div class="login-logo">
-          <svg width="48" height="48" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="36" cy="36" r="36" fill="url(#loginGrad)"/>
-            <path d="M24 36 L33 45 L48 27" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <defs>
-              <linearGradient id="loginGrad" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#3b82f6"/><stop offset="1" stop-color="#1d4ed8"/>
-              </linearGradient>
-            </defs>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 10a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2"/>
+            <path d="M10 5.172C10.726 5.06 11.463 5 12.2 5c3.84 0 7 3.134 7 7 0 1.41-.4 2.73-1.1 3.844"/>
+            <path d="M7.192 7.028A7 7 0 0 0 5.2 12c0 1.273.327 2.476.9 3.52"/>
+            <path d="M12 19c-2.21 0-4.21-.897-5.655-2.346"/>
+            <path d="M12 12v3"/><path d="M14.5 12a2.5 2.5 0 0 0-5 0v1"/>
+            <path d="M18 12c0 3.314-2.686 6-6 6"/>
           </svg>
         </div>
         <h2 class="login-title">TCS Tap Tracker</h2>
@@ -63,14 +62,14 @@
         <button class="auth-tab" id="tab-signup">Sign Up</button>
       </div>
 
-      <!-- ── SIGN IN FORM ─────────────────────────────────── -->
+      <!-- ── SIGN IN FORM ──────────────────────────────── -->
       <form id="login-form" novalidate>
         <div class="form-group">
           <label class="form-label" for="input-associate-id">Associate ID</label>
           <div class="input-wrapper">
             <span class="input-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
               </svg>
             </span>
             <input id="input-associate-id" class="form-input" type="text"
@@ -117,9 +116,8 @@
         </button>
       </form>
 
-      <!-- ── SIGN UP FORM ─────────────────────────────────── -->
+      <!-- ── SIGN UP FORM ──────────────────────────────── -->
       <form id="signup-form" class="hidden" novalidate>
-
         <div class="form-group">
           <label class="form-label" for="su-name">Full Name</label>
           <div class="input-wrapper">
@@ -139,12 +137,11 @@
           <div class="input-wrapper">
             <span class="input-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
               </svg>
             </span>
             <input id="su-id" class="form-input" type="text"
-              placeholder="e.g. 1002" inputmode="numeric" maxlength="20" required />
+              placeholder="e.g. 3261098" inputmode="numeric" maxlength="20" required />
           </div>
           <span class="field-error" id="su-error-id"></span>
         </div>
@@ -177,8 +174,7 @@
           <div class="input-wrapper">
             <span class="input-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </span>
             <input id="su-confirm-pin" class="form-input" type="password"
@@ -200,7 +196,6 @@
               <option value="Senior Associate">Senior Associate</option>
               <option value="Team Lead">Team Lead</option>
               <option value="Manager">Manager</option>
-              <option value="Admin">Admin</option>
             </select>
           </div>
         </div>
@@ -226,6 +221,7 @@
   ════════════════════════════════════════ -->
   <div id="screen-dashboard" class="screen">
 
+    <!-- App Bar -->
     <header class="app-bar">
       <div class="app-bar-left">
         <div class="app-bar-avatar" id="user-avatar"></div>
@@ -235,124 +231,431 @@
         </div>
       </div>
       <button class="btn-logout" id="btn-logout" aria-label="Logout">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-          <polyline points="16 17 21 12 16 7"/>
-          <line x1="21" y1="12" x2="9" y2="12"/>
+          <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
         </svg>
         <span>Logout</span>
       </button>
     </header>
 
+    <!-- Date / Clock Banner -->
     <div class="date-banner">
-      <span id="live-date">Loading date…</span>
+      <span id="live-date">Loading…</span>
       <span class="date-dot">·</span>
       <span id="live-clock">00:00:00</span>
     </div>
 
-    <main class="dashboard-main">
-      <div class="status-pill" id="status-pill">
-        <span class="status-dot" id="status-dot"></span>
-        <span id="status-label">Tapped Out</span>
-      </div>
+    <!-- Tab Panels -->
+    <div class="tab-panels">
 
-      <div class="tap-button-container">
-        <div class="progress-ring-wrapper" id="progress-ring-wrapper">
-          <svg class="progress-ring" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-            <circle class="ring-track" cx="110" cy="110" r="100" />
-            <circle class="ring-fill" id="ring-fill" cx="110" cy="110" r="100" />
-          </svg>
-          <button class="tap-btn" id="tap-btn" aria-label="Tap In / Tap Out">
-            <span class="tap-btn-icon">
-              <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 10a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2"/>
-                <path d="M10 5.172C10.726 5.06 11.463 5 12.2 5c3.84 0 7 3.134 7 7 0 1.41-.4 2.73-1.1 3.844"/>
-                <path d="M7.192 7.028A7 7 0 0 0 5.2 12c0 1.273.327 2.476.9 3.52"/>
-                <path d="M12 19c-2.21 0-4.21-.897-5.655-2.346"/>
-                <path d="M12 12v3"/><path d="M14.5 12a2.5 2.5 0 0 0-5 0v1"/>
-                <path d="M18 12c0 3.314-2.686 6-6 6"/>
+      <!-- ── HOME TAB ─────────────────────────────────── -->
+      <div id="tab-home" class="tab-panel active">
+        <div class="home-panel">
+
+          <div class="status-pill" id="status-pill">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-label">Tapped Out</span>
+          </div>
+
+          <div class="tap-button-container">
+            <div class="progress-ring-wrapper">
+              <svg class="progress-ring" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                <circle class="ring-track" cx="110" cy="110" r="100" />
+                <circle class="ring-fill" id="ring-fill" cx="110" cy="110" r="100" />
               </svg>
+              <button class="tap-btn" id="tap-btn" aria-label="Tap In / Tap Out">
+                <span class="tap-btn-icon">
+                  <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 10a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2"/>
+                    <path d="M10 5.172C10.726 5.06 11.463 5 12.2 5c3.84 0 7 3.134 7 7 0 1.41-.4 2.73-1.1 3.844"/>
+                    <path d="M7.192 7.028A7 7 0 0 0 5.2 12c0 1.273.327 2.476.9 3.52"/>
+                    <path d="M12 19c-2.21 0-4.21-.897-5.655-2.346"/>
+                    <path d="M12 12v3"/><path d="M14.5 12a2.5 2.5 0 0 0-5 0v1"/>
+                    <path d="M18 12c0 3.314-2.686 6-6 6"/>
+                  </svg>
+                </span>
+                <span class="tap-btn-label" id="tap-btn-label">TAP IN</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="elapsed-panel" id="elapsed-panel">
+            <div class="elapsed-time" id="elapsed-time">00:00:00</div>
+            <div class="elapsed-meta">
+              <span class="elapsed-label">Elapsed</span>
+              <span class="elapsed-target">/ 9:00:00 target</span>
+            </div>
+            <div class="tapped-in-since" id="tapped-in-since"></div>
+          </div>
+
+          <!-- Week Summary Card -->
+          <div class="week-summary-card" id="week-summary-card">
+            <div>
+              <div class="week-summary-label">This Week</div>
+              <div class="week-summary-hours" id="week-total-hours">—</div>
+              <div class="week-summary-sub" id="week-days-count">Loading…</div>
+            </div>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--c-purple);opacity:0.5">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+
+          <!-- Week Heatmap -->
+          <div class="week-heatmap">
+            <div class="week-heatmap-title">Week at a Glance</div>
+            <div class="week-heatmap-row" id="week-heatmap-row">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="quick-stats">
+            <div class="stat-card">
+              <span class="stat-icon">📅</span>
+              <div>
+                <span class="stat-label">Today</span>
+                <span class="stat-value" id="stat-date">—</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">⏱️</span>
+              <div>
+                <span class="stat-label">Last Shift</span>
+                <span class="stat-value" id="stat-last-shift">—</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">📊</span>
+              <div>
+                <span class="stat-label">This Month</span>
+                <span class="stat-value" id="stat-month-days">—</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">🏆</span>
+              <div>
+                <span class="stat-label">Month Hours</span>
+                <span class="stat-value" id="stat-month-hours">—</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── HISTORY TAB ──────────────────────────────── -->
+      <div id="tab-history" class="tab-panel">
+        <div class="history-panel">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <h2 class="panel-title">My History</h2>
+            <button class="btn-download" id="btn-download-csv">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              CSV
+            </button>
+          </div>
+
+          <!-- Month Picker -->
+          <div class="month-picker" id="month-picker"></div>
+
+          <!-- Summary Chips -->
+          <div class="history-summary" id="history-summary">
+            <div class="history-summary-chip">
+              <span class="chip-val" id="sum-days">—</span>
+              <span class="chip-lbl">Days Present</span>
+            </div>
+            <div class="history-summary-chip">
+              <span class="chip-val" id="sum-sessions">—</span>
+              <span class="chip-lbl">Sessions</span>
+            </div>
+            <div class="history-summary-chip">
+              <span class="chip-val" id="sum-hours">—</span>
+              <span class="chip-lbl">Total Hours</span>
+            </div>
+          </div>
+
+          <!-- State: Loading (skeleton) -->
+          <div id="history-loading" class="hidden">
+            <div class="skeleton-list">
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card" style="opacity:0.6"></div>
+            </div>
+          </div>
+
+          <!-- State: Empty -->
+          <div class="state-empty hidden" id="history-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <p>No records this month.</p>
+            <p style="font-size:0.8rem;color:var(--t-muted)">Tap in to start tracking!</p>
+          </div>
+
+          <!-- State: Error -->
+          <div class="state-error hidden" id="history-error">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <p id="history-error-text">Failed to load history.</p>
+            <button class="btn-secondary" id="btn-retry-history">Retry</button>
+          </div>
+
+          <!-- Records List -->
+          <div id="history-list"></div>
+        </div>
+      </div>
+
+      <!-- ── PROFILE TAB ──────────────────────────────── -->
+      <div id="tab-profile" class="tab-panel">
+        <div class="profile-panel">
+
+          <!-- Hero -->
+          <div class="profile-hero">
+            <div class="profile-avatar" id="profile-avatar"></div>
+            <div class="profile-name" id="profile-name">—</div>
+            <div class="profile-role-chip" id="profile-role">Associate</div>
+            <div style="font-size:0.8rem;color:var(--t-muted)">ID: <strong id="profile-id" style="color:var(--c-purple)">—</strong></div>
+          </div>
+
+          <!-- Stats -->
+          <div class="profile-stats">
+            <div class="profile-stat-card">
+              <span class="val" id="profile-month-hours">—</span>
+              <span class="lbl">Month Hours</span>
+            </div>
+            <div class="profile-stat-card">
+              <span class="val" id="profile-month-days">—</span>
+              <span class="lbl">Days Present</span>
+            </div>
+            <div class="profile-stat-card">
+              <span class="val" id="profile-sessions">—</span>
+              <span class="lbl">Sessions</span>
+            </div>
+            <div class="profile-stat-card">
+              <span class="val" id="profile-avg-hours">—</span>
+              <span class="lbl">Avg / Day</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="profile-actions">
+            <button class="profile-action-btn" id="btn-change-pin">
+              <span class="action-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </span>
+              <span>Change PIN</span>
+              <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+
+          <!-- Change PIN Form (hidden by default) -->
+          <div class="change-pin-form hidden" id="change-pin-form">
+            <div class="form-group">
+              <label class="form-label" for="cp-old">Current PIN</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input id="cp-old" class="form-input" type="password" placeholder="Current PIN" maxlength="4" inputmode="numeric" />
+              </div>
+              <span class="field-error" id="cp-error-old"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cp-new">New PIN</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                </span>
+                <input id="cp-new" class="form-input" type="password" placeholder="New 4-digit PIN" maxlength="4" inputmode="numeric" />
+              </div>
+              <span class="field-error" id="cp-error-new"></span>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="cp-confirm">Confirm New PIN</label>
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                </span>
+                <input id="cp-confirm" class="form-input" type="password" placeholder="Repeat new PIN" maxlength="4" inputmode="numeric" />
+              </div>
+              <span class="field-error" id="cp-error-confirm"></span>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:4px">
+              <button class="btn-secondary" id="btn-save-pin">
+                <span class="btn-label">Save PIN</span>
+                <span class="btn-spinner hidden"></span>
+              </button>
+              <button class="btn-modal-cancel" id="btn-cancel-pin" style="flex:1;padding:11px">Cancel</button>
+            </div>
+            <div class="form-error-banner hidden" id="cp-error-banner">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+              <span id="cp-error-text"></span>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button class="profile-action-btn danger" id="btn-profile-logout">
+              <span class="action-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+              </span>
+              <span>Logout</span>
+              <svg class="action-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── ADMIN TAB (hidden unless admin) ──────────── -->
+      <div id="tab-admin" class="tab-panel hidden">
+        <div class="admin-panel">
+
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+            <h2 class="panel-title">Admin Panel</h2>
+            <span class="admin-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Admin Access
             </span>
-            <span class="tap-btn-label" id="tap-btn-label">TAP IN</span>
+          </div>
+
+          <!-- Month Selector for admin export -->
+          <div class="month-picker" id="admin-month-picker"></div>
+
+          <button class="admin-export-btn" id="btn-admin-export">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export All as CSV
           </button>
-        </div>
-      </div>
 
-      <div class="elapsed-panel" id="elapsed-panel">
-        <div class="elapsed-time" id="elapsed-time">00:00:00</div>
-        <div class="elapsed-meta">
-          <span class="elapsed-label">Elapsed</span>
-          <span class="elapsed-target">/ 9:00:00 target</span>
-        </div>
-        <div class="tapped-in-since" id="tapped-in-since"></div>
-      </div>
+          <!-- Associates list view -->
+          <div id="admin-list-view">
+            <div class="admin-search">
+              <span class="admin-search-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input id="admin-search" class="admin-search-input" type="text" placeholder="Search associates…" />
+            </div>
 
-      <div class="quick-stats" id="quick-stats">
-        <div class="stat-card">
-          <span class="stat-icon">📅</span>
-          <div>
-            <span class="stat-label">Today</span>
-            <span class="stat-value" id="stat-date">—</span>
+            <!-- Loading skeleton -->
+            <div id="admin-loading" class="hidden">
+              <div class="skeleton-list">
+                <div class="skeleton-card" style="height:72px"></div>
+                <div class="skeleton-card" style="height:72px"></div>
+                <div class="skeleton-card" style="height:72px"></div>
+              </div>
+            </div>
+
+            <div class="state-error hidden" id="admin-error">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <p id="admin-error-text">Failed to load associates.</p>
+            </div>
+
+            <div class="admin-associate-list" id="admin-associate-list"></div>
           </div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-icon">⏱️</span>
-          <div>
-            <span class="stat-label">Last Shift</span>
-            <span class="stat-value" id="stat-last-shift">—</span>
+
+          <!-- Drill-down view (hidden initially) -->
+          <div id="admin-drill-view" class="hidden" style="display:flex;flex-direction:column;gap:14px">
+            <button class="admin-back-btn" id="btn-admin-back">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              Back to Associates
+            </button>
+            <div class="admin-drill-header">
+              <div class="admin-drill-name" id="drill-name">—</div>
+              <div class="admin-drill-id" id="drill-id-display">ID: —</div>
+            </div>
+            <div class="month-picker" id="drill-month-picker"></div>
+            <div class="history-summary">
+              <div class="history-summary-chip">
+                <span class="chip-val" id="drill-sum-days">—</span>
+                <span class="chip-lbl">Days</span>
+              </div>
+              <div class="history-summary-chip">
+                <span class="chip-val" id="drill-sum-sessions">—</span>
+                <span class="chip-lbl">Sessions</span>
+              </div>
+              <div class="history-summary-chip">
+                <span class="chip-val" id="drill-sum-hours">—</span>
+                <span class="chip-lbl">Hours</span>
+              </div>
+            </div>
+            <div id="drill-list"></div>
           </div>
+
         </div>
       </div>
-    </main>
 
-    <!-- Bottom Sheet -->
-    <div class="sheet-backdrop" id="sheet-backdrop"></div>
-    <div class="bottom-sheet" id="bottom-sheet">
-      <div class="sheet-handle-bar" id="sheet-handle"></div>
-      <div class="sheet-header">
-        <h3 class="sheet-title">My Swipe History</h3>
-        <button class="btn-refresh" id="btn-refresh-history" aria-label="Refresh history">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+    </div><!-- /tab-panels -->
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-tab active" data-tab="home" aria-label="Home">
+        <span class="nav-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
-        </button>
-      </div>
-      <div class="sheet-body" id="sheet-body">
-        <div class="history-empty" id="history-empty">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3">
+        </span>
+        <span>Home</span>
+      </button>
+      <button class="nav-tab" data-tab="history" aria-label="History">
+        <span class="nav-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
             <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
-          <p>No attendance records yet.</p>
-          <p class="history-empty-sub">Tap refresh to load.</p>
-        </div>
-        <div class="history-loading hidden" id="history-loading">
-          <div class="history-spinner"></div>
-          <p>Loading history…</p>
-        </div>
-        <div class="history-error hidden" id="history-error">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </span>
+        <span>History</span>
+        <span class="nav-badge hidden" id="history-badge">0</span>
+      </button>
+      <button class="nav-tab" data-tab="profile" aria-label="Profile">
+        <span class="nav-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
           </svg>
-          <p id="history-error-text">Failed to load history.</p>
-        </div>
-        <ul class="history-list" id="history-list"></ul>
-      </div>
-    </div>
-  </div>
+        </span>
+        <span>Profile</span>
+      </button>
+      <!-- Admin tab – shown only for admin ID -->
+      <button class="nav-tab hidden" data-tab="admin" id="nav-admin" aria-label="Admin">
+        <span class="nav-tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </span>
+        <span>Admin</span>
+      </button>
+    </nav>
 
-  <!-- History FAB – fixed at screen level, outside bottom-sheet transform -->
-  <button class="sheet-fab" id="sheet-fab" aria-label="View history">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-      <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-    </svg>
-    <span>History</span>
-  </button>
+  </div><!-- /screen-dashboard -->
 
-  <!-- Confirmation Modal -->
-  <div class="modal-overlay hidden" id="modal-overlay">
+  <!-- ════════════════════════════════════════
+       TAP-OUT CONFIRMATION MODAL
+  ════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-overlay">
     <div class="modal-card">
       <div class="modal-icon">⏹️</div>
       <h3 class="modal-title">End Shift?</h3>
@@ -370,7 +673,42 @@
     </div>
   </div>
 
-  <!-- Toast -->
+  <!-- ════════════════════════════════════════
+       SESSION SUMMARY MODAL
+  ════════════════════════════════════════ -->
+  <div class="modal-overlay" id="summary-overlay">
+    <div class="modal-card">
+      <div class="modal-icon">🎉</div>
+      <h3 class="modal-title">Shift Complete!</h3>
+      <div class="summary-stats">
+        <div class="summary-stat">
+          <span class="val" id="sum-duration">—</span>
+          <span class="lbl">Duration</span>
+        </div>
+        <div class="summary-stat">
+          <span class="val" id="sum-tap-in">—</span>
+          <span class="lbl">Tap In</span>
+        </div>
+        <div class="summary-stat">
+          <span class="val" id="sum-tap-out">—</span>
+          <span class="lbl">Tap Out</span>
+        </div>
+        <div class="summary-stat">
+          <span class="val" id="sum-session-date">—</span>
+          <span class="lbl">Date</span>
+        </div>
+      </div>
+      <button class="btn-primary" id="btn-summary-close">Done</button>
+    </div>
+  </div>
+
+  <!-- Offline Banner -->
+  <div class="offline-banner" id="offline-banner">
+    <span class="offline-dot"></span>
+    Offline – <span id="offline-queue-count">0</span> pending
+  </div>
+
+  <!-- Toast Container -->
   <div class="toast-container" id="toast-container"></div>
 
   <script type="module" src="js/app.js"></script>

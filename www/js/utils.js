@@ -1,13 +1,9 @@
 /**
- * utils.js – Shared helper functions (date/time, formatting, haptics, toast).
+ * utils.js v2.0 – Shared helper functions.
  */
 
-/* ── Time & Date ─────────────────────────────────────────────────── */
+/* ── Time & Date ─────────────────────────────────────────────── */
 
-/**
- * Returns the current time as "HH:MM:SS AM/PM".
- * @param {Date} [d]
- */
 export function formatTimeAmPm(d = new Date()) {
   let h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
   const ampm = h >= 12 ? 'PM' : 'AM';
@@ -15,38 +11,55 @@ export function formatTimeAmPm(d = new Date()) {
   return `${pad(h)}:${pad(m)}:${pad(s)} ${ampm}`;
 }
 
-/**
- * Returns "YYYY-MM-DD" for a given date.
- * @param {Date} [d]
- */
 export function formatDateISO(d = new Date()) {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-/**
- * Returns "Wednesday, 27 August 2026" style string.
- * @param {Date} [d]
- */
 export function formatDateLong(d = new Date()) {
   return d.toLocaleDateString('en-IN', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   });
 }
 
+export function formatDateShort(d = new Date()) {
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+}
+
 /**
- * Returns elapsed seconds between two dates.
- * @param {Date|string} from
- * @param {Date} [to]
+ * Returns "YYYYMM" for a given date.
  */
+export function formatMonthKey(d = new Date()) {
+  return `${d.getFullYear()}${pad(d.getMonth() + 1)}`;
+}
+
+/**
+ * Converts "YYYYMM" → "August 2026"
+ */
+export function formatMonthLabel(yyyymm) {
+  if (!yyyymm || yyyymm.length < 6) return yyyymm;
+  const y = parseInt(yyyymm.slice(0, 4), 10);
+  const m = parseInt(yyyymm.slice(4, 6), 10) - 1;
+  return new Date(y, m, 1).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+}
+
+/**
+ * Returns last N months as YYYYMM strings, newest first.
+ */
+export function lastNMonths(n = 6) {
+  const months = [];
+  const now = new Date();
+  for (let i = 0; i < n; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    months.push(formatMonthKey(d));
+  }
+  return months;
+}
+
 export function elapsedSeconds(from, to = new Date()) {
   const f = from instanceof Date ? from : new Date(from);
   return Math.max(0, Math.floor((to - f) / 1000));
 }
 
-/**
- * Formats seconds into "HH:MM:SS".
- * @param {number} totalSeconds
- */
 export function formatElapsed(totalSeconds) {
   const h = Math.floor(totalSeconds / 3600);
   const m = Math.floor((totalSeconds % 3600) / 60);
@@ -54,10 +67,6 @@ export function formatElapsed(totalSeconds) {
   return `${pad(h)}:${pad(m)}:${pad(s)}`;
 }
 
-/**
- * Formats seconds into "X hrs Y mins" (for API payload).
- * @param {number} totalSeconds
- */
 export function formatTotalHours(totalSeconds) {
   const h = Math.floor(totalSeconds / 3600);
   const m = Math.floor((totalSeconds % 3600) / 60);
@@ -65,10 +74,21 @@ export function formatTotalHours(totalSeconds) {
   return `${h} hrs ${m} mins`;
 }
 
-/** @param {number} n */
+/**
+ * Parses "X hrs Y mins" or "Y mins" string into total seconds.
+ */
+export function parseTotalHoursToSecs(str) {
+  if (!str) return 0;
+  let secs = 0;
+  const hMatch = str.match(/(\d+)\s*hr/i);
+  const mMatch = str.match(/(\d+)\s*min/i);
+  if (hMatch) secs += parseInt(hMatch[1], 10) * 3600;
+  if (mMatch) secs += parseInt(mMatch[1], 10) * 60;
+  return secs;
+}
+
 function pad(n) { return String(n).padStart(2, '0'); }
 
-/** Time-of-day greeting */
 export function greeting() {
   const h = new Date().getHours();
   if (h < 12) return 'morning';
@@ -77,52 +97,81 @@ export function greeting() {
   return 'night';
 }
 
-/* ── Haptics ─────────────────────────────────────────────────────── */
+/* ── Days of week helpers ─────────────────────────────────────── */
+
+/** Returns Mon-Sun short labels for the current week */
+export function currentWeekDays() {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0=Sun
+  // Shift so week starts Monday
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - ((dayOfWeek + 6) % 7));
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    days.push({
+      dateISO:  formatDateISO(d),
+      label:    d.toLocaleDateString('en-IN', { weekday: 'short' }).slice(0, 2),
+      isToday:  formatDateISO(d) === formatDateISO(now),
+    });
+  }
+  return days;
+}
+
+/* ── Haptics ─────────────────────────────────────────────────── */
 
 export function haptic(ms = 100) {
   try { navigator.vibrate?.(ms); } catch { /* non-fatal */ }
 }
 
-/* ── Toast Notifications ─────────────────────────────────────────── */
+/* ── Toast ───────────────────────────────────────────────────── */
 
-const TOAST_DURATION = 3000; // ms
+const TOAST_DURATION = 3200;
 
-/**
- * Shows a toast notification.
- * @param {string} message
- * @param {'success'|'error'|'info'} [type]
- */
 export function showToast(message, type = 'info') {
   const container = document.getElementById('toast-container');
   if (!container) return;
-
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
   toast.setAttribute('role', 'alert');
   toast.setAttribute('aria-live', 'polite');
-
   const icon = { success: '✓', error: '✕', info: 'ℹ' }[type] || 'ℹ';
   toast.innerHTML = `<strong>${icon}</strong> ${escHtml(message)}`;
   container.appendChild(toast);
-
-  // Auto-remove
   setTimeout(() => {
     toast.classList.add('fade-out');
     toast.addEventListener('animationend', () => toast.remove(), { once: true });
   }, TOAST_DURATION);
 }
 
-/* ── Avatar Initials ─────────────────────────────────────────────── */
+/* ── Avatar Initials ─────────────────────────────────────────── */
 
-/**
- * Returns one or two uppercase initials from a name string.
- * @param {string} name
- */
 export function initials(name = '') {
   return name.trim().split(/\s+/).slice(0, 2).map(w => w[0]?.toUpperCase() || '').join('');
 }
 
-/* ── Sanitise ────────────────────────────────────────────────────── */
-function escHtml(str) {
+/* ── CSV Export ──────────────────────────────────────────────── */
+
+/**
+ * Triggers a browser download for a CSV string.
+ * @param {string} csvString
+ * @param {string} filename
+ */
+export function downloadCsvFile(csvString, filename) {
+  const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 500);
+}
+
+/* ── Sanitise ────────────────────────────────────────────────── */
+
+export function escHtml(str) {
+  if (typeof str !== 'string') return String(str ?? '');
   return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
